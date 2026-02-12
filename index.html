@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -783,7 +783,7 @@ var heroImages=[
   'https://images.unsplash.com/photo-1524492412937-b33874b7a497?auto=format&fit=crop&w=2400&q=90', // Pyramids - Giza
   'https://images.unsplash.com/photo-1587974928442-77dc3e0dba72?auto=format&fit=crop&w=2400&q=90', // Nile/Cairo
   'https://images.unsplash.com/photo-1572252009286-268acec5ca0a?auto=format&fit=crop&w=2400&q=90', // Nile view
-  'https://images.unsplash.com/photo-1524492412937-b33874b7a497?auto=format&fit=crop&w=2400&q=90'  // Pyramids - Giza
+  'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=2400&q=90'  // Nile sunset
 ],heroIdx=0,heroBusy=false;
 
 var heroBg=document.getElementById('heroBg');
@@ -811,21 +811,19 @@ function rotateHero(){
   if(!heroBg || !heroBgNext || heroBusy) return;
   heroBusy=true;
   var nextIdx=(heroIdx+1)%heroImages.length;
-  preloadImage(heroImages[nextIdx]).then(function(){
-    setHeroBackground(heroBgNext, heroImages[nextIdx]);
-    heroBg.style.transform='scale(1.01)';
-    heroBgNext.style.transform='scale(1.02)';
-    requestAnimationFrame(function(){
-      heroBgNext.style.opacity='1';
-      setTimeout(function(){
-        setHeroBackground(heroBg, heroImages[nextIdx]);
-        heroBg.style.transform='scale(1.02)';
-        heroBgNext.style.opacity='0';
-        heroBgNext.style.transform='scale(1.04)';
-        heroIdx=nextIdx;
-        heroBusy=false;
-      },1100);
-    });
+  setHeroBackground(heroBgNext, heroImages[nextIdx]);
+  heroBg.style.transform='scale(1.01)';
+  heroBgNext.style.transform='scale(1.02)';
+  requestAnimationFrame(function(){
+    heroBgNext.style.opacity='1';
+    setTimeout(function(){
+      setHeroBackground(heroBg, heroImages[nextIdx]);
+      heroBg.style.transform='scale(1.02)';
+      heroBgNext.style.opacity='0';
+      heroBgNext.style.transform='scale(1.04)';
+      heroIdx=nextIdx;
+      heroBusy=false;
+    },1100);
   });
 }
 
@@ -837,5 +835,3 @@ primeHeroImages().then(function(){
 </script>
 </body>
 </html>
-
-
